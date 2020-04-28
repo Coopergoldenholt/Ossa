@@ -6,7 +6,7 @@ const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING } = process.env;
 const emailCtrl = require("./Controller/emailController");
 const sessCtrl = require("./Controller/sessionController");
 
-process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
+// process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 
 const app = express();
 

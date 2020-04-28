@@ -8,7 +8,7 @@ let transporter = nodemailer.createTransport({
 	host: "smtp.gmail.com",
 	service: "gmail",
 	auth: {
-		user: "coopergoldenholt12@gmail.com",
+		user: "ossamarket@gmail.com",
 		pass: EMAIL_PASS,
 	},
 	tls: {
@@ -44,7 +44,7 @@ module.exports = {
 			]);
 			req.session.user = { email: email, recievedMarketingPlan: true };
 			transporter.sendMail({
-				from: "coopergoldenholt12@gmail.com",
+				from: "ossamarket@gmail.com",
 				to: email,
 				subject: "An Attached File",
 				text: "Check out this attached pdf file",
@@ -76,7 +76,7 @@ module.exports = {
 			]);
 			req.session.user = { email: email, requestedMoreInformation: true };
 			transporter.sendMail({
-				from: "coopergoldenholt12@gmail.com",
+				from: "ossamarket@gmail.com",
 				to: email,
 				subject: "Ossa Marketing",
 				text:
@@ -97,7 +97,7 @@ module.exports = {
 			]);
 			req.session.user = { email: email, requestedMoreInformation: true };
 			transporter.sendMail({
-				from: "coopergoldenholt12@gmail.com",
+				from: "ossamarket@gmail.com",
 				to: email,
 				subject: "Ossa Marketing",
 				text:
