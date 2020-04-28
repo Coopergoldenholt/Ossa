@@ -10,6 +10,8 @@ const sessCtrl = require("./Controller/sessionController");
 
 const app = express();
 
+app.use(express.static(`${__dirname}/../build`));
+
 app.use(express.json());
 app.use(
 	session({
