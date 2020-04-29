@@ -6,7 +6,7 @@ const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING } = process.env;
 const emailCtrl = require("./Controller/emailController");
 const sessCtrl = require("./Controller/sessionController");
 
-process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
+// process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 
 const app = express();
 
@@ -25,7 +25,10 @@ app.post("/api/email", emailCtrl.addEmail);
 app.post("/api/message", emailCtrl.addMessage);
 app.post("/api/session", sessCtrl.timesVisited);
 
-massive(CONNECTION_STRING).then((db) => {
+massive({
+	connectionString: CONNECTION_STRING,
+	ssl: { rejectUnauthorized: false },
+}).then((db) => {
 	app.set("db", db);
 	app.listen(SERVER_PORT, () => console.log(`${SERVER_PORT} is listening`));
 });
