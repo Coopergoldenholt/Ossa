@@ -24,7 +24,7 @@ module.exports = {
 		const date = `${new Date().getFullYear()}-${
 			new Date().getMonth() + 1
 		}-${new Date().getDate()} ${new Date().getHours()}:${new Date().getMinutes()}`;
-		const [emailCheck] = await db.email.get_email(email);
+		const [emailCheck] = await db.get_email(email);
 		console.log(emailCheck);
 
 		if (emailCheck) {
