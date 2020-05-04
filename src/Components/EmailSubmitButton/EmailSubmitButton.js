@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import swal from "sweetalert";
+import swal from "@sweetalert/with-react";
 
 const EmailSubmitButton = (props) => {
+	const [loading, setLoading] = useState(false);
+	const title = () => {
+		if (loading === true) {
+			return null;
+		}
+	};
 	const handleEmailSubmit = async () => {
 		if (!props.valid) {
 			return swal({
@@ -11,29 +17,44 @@ const EmailSubmitButton = (props) => {
 				icon: "error",
 				button: "Will Do",
 			});
+		} else {
+			setLoading(true);
+			swal(
+				<div>
+					{loading ? (
+						"Loading"
+					) : (
+						<>
+							<h1>Hello!</h1>
+							<p>I am a React component inside a SweetAlert modal.</p>
+						</>
+					)}
+				</div>
+			);
+			axios
+				.post("/api/email", { email: props.email })
+				.then((res) => {
+					setLoading(false);
+					swal(
+						<div>
+							<h1>Hello!</h1>
+							<p>I am a React component inside a SweetAlert modal.</p>
+						</div>
+					);
+				})
+				.catch((err) => {
+					setLoading(false);
+					console.log(err);
+					return swal({
+						title: "That Email Has Been Used.",
+						text: "Check your email to see if it is correct.",
+						icon: "error",
+						button: "Try Again!",
+					});
+				});
 		}
-		axios
-			.post("/api/email", { email: props.email })
-			.then((res) => {
-				console.log(res);
-				return swal({
-					title: "Marketing Walk-Through Sent!",
-					text: "Check your email, it's there!",
-					icon: "success",
-					button: "Awesome!",
-				});
-			})
-			.catch((err) => {
-				console.log(err);
-				return swal({
-					title: "That Email Has Been Used.",
-					text: "Check your email to see if it is correct.",
-					icon: "error",
-					button: "Try Again!",
-				});
-			});
 	};
-	console.log(props.email);
+
 	return (
 		<>
 			<input

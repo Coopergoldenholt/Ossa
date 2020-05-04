@@ -1,5 +1,4 @@
 import React from "react";
-import Home from "./Components/Home/Home";
 import Nav from "./Components/Nav/Nav";
 import "./css/ionicons.min.css";
 import "./css/magnific-popup.css";
@@ -12,6 +11,13 @@ import "./css/style.css";
 import routes from "./routes";
 import ScrollToTopButton from "./Components/ScrollToTopButton/ScrollToTopButton";
 import Footer from "./Components/Footer/Footer";
+import ReactGA from "react-ga";
+const { REACT_APP_GOOGLE_ANALYTICS_CODE } = process.env;
+
+function initializeReactGA() {
+	ReactGA.initialize(REACT_APP_GOOGLE_ANALYTICS_CODE);
+	ReactGA.pageview("/homepage");
+}
 
 function App() {
 	return (
