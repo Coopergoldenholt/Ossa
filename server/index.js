@@ -28,7 +28,7 @@ app.post("/api/session", sessCtrl.timesVisited);
 massive({
 	connectionString: CONNECTION_STRING,
 	ssl: { rejectUnauthorized: false },
-}).then((db) => {
-	app.set("db", db);
+}).then(async (db) => {
+	await app.set("db", db);
 	app.listen(SERVER_PORT, () => console.log(`${SERVER_PORT} is listening`));
 });
