@@ -18,7 +18,7 @@ let transporter = nodemailer.createTransport({
 
 module.exports = {
 	addEmail: async (req, res) => {
-		const db = req.app.get("db");
+		const db = await req.app.get("db");
 		const { email, firstName, lastName, message, phone } = req.body;
 		console.log(email);
 		const date = `${new Date().getFullYear()}-${
